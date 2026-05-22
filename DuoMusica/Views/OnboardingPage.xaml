@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DuoMusica.Views.OnboardingPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:DuoMusica.ViewModels">
+
+    <Grid BackgroundColor="{StaticResource Background}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackLayout Grid.Row="0" Padding="24,60,24,20" Spacing="8">
+            <Label Text="DuoMusica" FontSize="32" FontFamily="OpenSansSemibold"
+                   TextColor="{StaticResource Primary}" HorizontalTextAlignment="Center" />
+            <Label Text="{Binding CurrentStep, StringFormat='Paso {0} de 2'}"
+                   Style="{StaticResource MutedLabel}" HorizontalTextAlignment="Center" />
+        </StackLayout>
+
+        <!-- Step 1: Native languages -->
+        <ScrollView Grid.Row="1" IsVisible="{Binding IsStep1}">
+            <StackLayout Padding="24" Spacing="16">
+                <Label Text="¿Qué idiomas hablás?" Style="{StaticResource TitleLabel}" />
+                <Label Text="Seleccioná todos los que apliquen y tu nivel." Style="{StaticResource SubtitleLabel}" />
+
+                <Entry Placeholder="Tu nombre (opcional)" Text="{Binding DisplayName}"
+                       BackgroundColor="{StaticResource Surface}"
+                       PlaceholderColor="{StaticResource TextMuted}"
+                       TextColor="{StaticResource TextPrimary}"
+                       Margin="0,8,0,0" />
+
+                <CollectionView ItemsSource="{Binding NativeLanguages}" SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="vm:SelectableLanguage">
+                            <Grid Padding="0,6" ColumnDefinitions="Auto,*,Auto">
+                                <CheckBox Grid.Column="0" IsChecked="{Binding IsSelected}"
+                                          Color="{StaticResource Primary}" VerticalOptions="Center" />
+                                <Label Grid.Column="1" Text="{Binding Name}"
+                                       VerticalOptions="Center" Margin="8,0"
+                                       TextColor="{StaticResource TextPrimary}" />
+                                <Picker Grid.Column="2" ItemsSource="{Binding LevelOptions}"
+                                        SelectedIndex="{Binding SelectedLevel}"
+                                        IsEnabled="{Binding IsSelected}"
+                                        WidthRequest="130"
+                                        TextColor="{StaticResource TextSecondary}"
+                                        BackgroundColor="{StaticResource Surface}" />
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </ScrollView>
+
+        <!-- Step 2: Practice languages -->
+        <ScrollView Grid.Row="1" IsVisible="{Binding IsStep2}">
+            <StackLayout Padding="24" Spacing="16">
+                <Label Text="¿Qué idiomas querés practicar?" Style="{StaticResource TitleLabel}" />
+                <Label Text="Seleccioná uno o más, y tu nivel actual." Style="{StaticResource SubtitleLabel}" />
+
+                <CollectionView ItemsSource="{Binding PracticeLanguages}" SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="vm:SelectableLanguage">
+                            <Grid Padding="0,6" ColumnDefinitions="Auto,*,Auto">
+                                <CheckBox Grid.Column="0" IsChecked="{Binding IsSelected}"
+                                          Color="{StaticResource Secondary}" VerticalOptions="Center" />
+                                <Label Grid.Column="1" Text="{Binding Name}"
+                                       VerticalOptions="Center" Margin="8,0"
+                                       TextColor="{StaticResource TextPrimary}" />
+                                <Picker Grid.Column="2" ItemsSource="{Binding LevelOptions}"
+                                        SelectedIndex="{Binding SelectedLevel}"
+                                        IsEnabled="{Binding IsSelected}"
+                                        WidthRequest="130"
+                                        TextColor="{StaticResource TextSecondary}"
+                                        BackgroundColor="{StaticResource Surface}" />
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </ScrollView>
+
+        <!-- Footer buttons -->
+        <StackLayout Grid.Row="2" Padding="24,16" Spacing="12">
+            <Button Text="Siguiente →" Command="{Binding NextStepCommand}"
+                    IsVisible="{Binding IsStep1}" />
+            <Button Text="¡Empezar!" Command="{Binding FinishCommand}"
+                    IsVisible="{Binding IsStep2}"
+                    BackgroundColor="{StaticResource Secondary}" />
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"
+                               Color="{StaticResource Primary}" />
+        </StackLayout>
+    </Grid>
+</ContentPage>

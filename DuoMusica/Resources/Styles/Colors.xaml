@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- DuoMusica palette -->
+    <Color x:Key="Primary">#6C5CE7</Color>
+    <Color x:Key="PrimaryDark">#A29BFE</Color>
+    <Color x:Key="Secondary">#FD79A8</Color>
+    <Color x:Key="SecondaryDark">#E84393</Color>
+    <Color x:Key="Background">#1E1E2E</Color>
+    <Color x:Key="Surface">#2A2A3E</Color>
+    <Color x:Key="SurfaceLight">#363650</Color>
+    <Color x:Key="Success">#00B894</Color>
+    <Color x:Key="SuccessLight">#55EFC4</Color>
+    <Color x:Key="Warning">#FDCB6E</Color>
+    <Color x:Key="Error">#D63031</Color>
+    <Color x:Key="ErrorLight">#FF7675</Color>
+    <Color x:Key="TextPrimary">#FFFFFF</Color>
+    <Color x:Key="TextSecondary">#B2BEC3</Color>
+    <Color x:Key="TextMuted">#636E72</Color>
+    <Color x:Key="Gold">#F9CA24</Color>
+
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}" />
+    <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}" />
+    <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource Background}" />
+    <SolidColorBrush x:Key="SurfaceBrush" Color="{StaticResource Surface}" />
+    <SolidColorBrush x:Key="SuccessBrush" Color="{StaticResource Success}" />
+    <SolidColorBrush x:Key="ErrorBrush" Color="{StaticResource Error}" />
+
+</ResourceDictionary>

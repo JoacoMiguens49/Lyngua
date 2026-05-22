@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DuoMusica.Views.SongSearchPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:DuoMusica.ViewModels"
+    xmlns:models="clr-namespace:DuoMusica.Models">
+
+    <Grid BackgroundColor="{StaticResource Background}" RowDefinitions="Auto,Auto,Auto,*">
+
+        <!-- Top bar -->
+        <StackLayout Grid.Row="0" Padding="24,60,24,12" Spacing="4">
+            <Label Text="Buscar canción" Style="{StaticResource TitleLabel}" />
+        </StackLayout>
+
+        <!-- Spotify auth notice -->
+        <Border Grid.Row="1" Style="{StaticResource Card}" Margin="24,0,24,12"
+                IsVisible="{Binding IsAuthenticated, Converter={StaticResource InvertBool}}">
+            <StackLayout Spacing="10">
+                <Label Text="Conectá tu cuenta de Spotify" FontFamily="OpenSansSemibold"
+                       FontSize="16" TextColor="{StaticResource TextPrimary}" />
+                <Label Text="Necesitás la app de Spotify instalada para reproducir canciones."
+                       Style="{StaticResource SubtitleLabel}" />
+                <Button Text="Conectar con Spotify" Command="{Binding AuthenticateCommand}"
+                        BackgroundColor="#1DB954" />
+            </StackLayout>
+        </Border>
+
+        <!-- Search + genre filters -->
+        <StackLayout Grid.Row="2" Padding="24,0,24,12" Spacing="12"
+                     IsVisible="{Binding IsAuthenticated}">
+            <SearchBar Placeholder="Buscar artista o canción..."
+                       Text="{Binding SearchQuery}"
+                       SearchCommand="{Binding SearchCommand}"
+                       BackgroundColor="{StaticResource Surface}" />
+
+            <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
+                <HorizontalStackLayout BindableLayout.ItemsSource="{Binding Genres}" Spacing="8">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="models:Genre">
+                            <Border StrokeShape="RoundRectangle 20" Padding="14,8"
+                                    BackgroundColor="{StaticResource Surface}"
+                                    Stroke="{StaticResource SurfaceLight}" StrokeThickness="1">
+                                <Label Text="{Binding Name}" FontSize="13"
+                                       TextColor="{StaticResource TextSecondary}" />
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.SelectGenreCommand}"
+                                        CommandParameter="{Binding .}" />
+                                </Border.GestureRecognizers>
+                            </Border>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </HorizontalStackLayout>
+            </ScrollView>
+        </StackLayout>
+
+        <!-- Results -->
+        <CollectionView Grid.Row="3" ItemsSource="{Binding Results}" SelectionMode="None"
+                        Margin="24,0">
+            <CollectionView.EmptyView>
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center"
+                             Spacing="8" Margin="0,60">
+                    <Label Text="Sin resultados" Style="{StaticResource SubtitleLabel}"
+                           HorizontalTextAlignment="Center" />
+                    <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"
+                                       Color="{StaticResource Primary}" />
+                </StackLayout>
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Song">
+                    <Border Style="{StaticResource Card}" Margin="0,0,0,8">
+                        <Grid ColumnDefinitions="64,*,Auto" ColumnSpacing="0">
+                            <Image Grid.Column="0" Source="{Binding AlbumArtUrl}"
+                                   HeightRequest="56" WidthRequest="56" Aspect="AspectFill">
+                                <Image.Clip>
+                                    <RoundRectangleGeometry Rect="0,0,56,56" CornerRadius="8" />
+                                </Image.Clip>
+                            </Image>
+
+                            <StackLayout Grid.Column="1" Margin="12,0" Spacing="2"
+                                         VerticalOptions="Center">
+                                <Label Text="{Binding Name}" FontFamily="OpenSansSemibold"
+                                       FontSize="15" LineBreakMode="TailTruncation"
+                                       TextColor="{StaticResource TextPrimary}" />
+                                <Label Text="{Binding Artist}" Style="{StaticResource MutedLabel}" />
+                                <Label Text="{Binding DurationFormatted}"
+                                       Style="{StaticResource MutedLabel}" />
+                            </StackLayout>
+
+                            <Label Grid.Column="2" VerticalOptions="Center" FontSize="24"
+                                   Text="▶" TextColor="{StaticResource Primary}" Margin="8,0,0,0" />
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.SelectSongCommand}"
+                                    CommandParameter="{Binding .}" />
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

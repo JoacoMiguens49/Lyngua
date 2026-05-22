@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DuoMusica.Views.HomePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:DuoMusica.ViewModels"
+    xmlns:models="clr-namespace:DuoMusica.Models">
+
+    <ScrollView BackgroundColor="{StaticResource Background}">
+        <StackLayout Padding="24,60,24,32" Spacing="0">
+
+            <!-- Header -->
+            <StackLayout Spacing="4" Margin="0,0,0,24">
+                <Label Text="{Binding DisplayName, StringFormat='¡Hola, {0}!'}"
+                       Style="{StaticResource TitleLabel}" />
+                <Label Text="Seguí aprendiendo con música" Style="{StaticResource SubtitleLabel}" />
+            </StackLayout>
+
+            <!-- Level + XP card -->
+            <Border Style="{StaticResource Card}" Margin="0,0,0,24">
+                <StackLayout Spacing="12">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <StackLayout Grid.Column="0" Spacing="2">
+                            <Label Text="{Binding Level, StringFormat='Nivel {0}'}"
+                                   FontSize="22" FontFamily="OpenSansSemibold"
+                                   TextColor="{StaticResource TextPrimary}" />
+                            <Label Text="{Binding LevelProgressLabel}" Style="{StaticResource MutedLabel}" />
+                        </StackLayout>
+                        <Border Grid.Column="1" BackgroundColor="{StaticResource Primary}"
+                                StrokeShape="Ellipse" WidthRequest="52" HeightRequest="52" Stroke="Transparent">
+                            <Label Text="{Binding Level}" FontSize="20" FontFamily="OpenSansSemibold"
+                                   HorizontalOptions="Center" VerticalOptions="Center"
+                                   TextColor="{StaticResource TextPrimary}" />
+                        </Border>
+                    </Grid>
+                    <ProgressBar Progress="{Binding LevelProgress}" />
+                    <Label Text="{Binding SongsCompleted, StringFormat='{0} canciones completadas'}"
+                           Style="{StaticResource MutedLabel}" />
+                </StackLayout>
+            </Border>
+
+            <!-- Mode buttons -->
+            <Label Text="Elegí un modo" FontSize="18" FontFamily="OpenSansSemibold"
+                   Margin="0,0,0,12" TextColor="{StaticResource TextPrimary}" />
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12" Margin="0,0,0,24">
+                <Border Grid.Column="0" Style="{StaticResource Card}">
+                    <StackLayout Spacing="10">
+                        <Label Text="🎵" FontSize="32" HorizontalTextAlignment="Center" />
+                        <Label Text="Clásico" FontFamily="OpenSansSemibold" FontSize="16"
+                               HorizontalTextAlignment="Center" TextColor="{StaticResource TextPrimary}" />
+                        <Label Text="Escuchá y transcribí" Style="{StaticResource MutedLabel}"
+                               HorizontalTextAlignment="Center" />
+                        <Button Text="Jugar" Command="{Binding NavigateToClassicCommand}" />
+                    </StackLayout>
+                </Border>
+
+                <Border Grid.Column="1" Style="{StaticResource Card}">
+                    <StackLayout Spacing="10">
+                        <Label Text="⚔️" FontSize="32" HorizontalTextAlignment="Center" />
+                        <Label Text="Deathmatch" FontFamily="OpenSansSemibold" FontSize="16"
+                               HorizontalTextAlignment="Center" TextColor="{StaticResource TextPrimary}" />
+                        <Label Text="Competí contra un bot" Style="{StaticResource MutedLabel}"
+                               HorizontalTextAlignment="Center" />
+                        <Button Text="Jugar" Command="{Binding NavigateToDeathMatchCommand}"
+                                BackgroundColor="{StaticResource Secondary}" />
+                    </StackLayout>
+                </Border>
+            </Grid>
+
+            <!-- Recent songs -->
+            <Label Text="Recientes" FontSize="18" FontFamily="OpenSansSemibold"
+                   Margin="0,0,0,12" TextColor="{StaticResource TextPrimary}"
+                   IsVisible="{Binding RecentSongs.Count, Converter={StaticResource IsPositive}}" />
+
+            <CollectionView ItemsSource="{Binding RecentSongs}" SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:SongProgress">
+                        <Border Style="{StaticResource Card}" Margin="0,0,0,8">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <StackLayout Grid.Column="0" Spacing="2">
+                                    <Label Text="{Binding TrackName}" FontFamily="OpenSansSemibold"
+                                           FontSize="15" TextColor="{StaticResource TextPrimary}" />
+                                    <Label Text="{Binding Artist}" Style="{StaticResource MutedLabel}" />
+                                    <ProgressBar Margin="0,4,0,0" HeightRequest="4" />
+                                </StackLayout>
+                                <Label Grid.Column="1"
+                                       Text="{Binding BestScore, StringFormat='{0:0}%'}"
+                                       TextColor="{StaticResource Success}" FontFamily="OpenSansSemibold"
+                                       VerticalOptions="Center" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"
+                               Color="{StaticResource Primary}" Margin="0,24" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

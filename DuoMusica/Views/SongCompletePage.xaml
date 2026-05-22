@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DuoMusica.Views.SongCompletePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:DuoMusica.ViewModels">
+
+    <ScrollView BackgroundColor="{StaticResource Background}">
+        <StackLayout Padding="24,80,24,40" Spacing="24" VerticalOptions="Center">
+
+            <!-- Achievement icon -->
+            <Label Text="{Binding IsPerfect, Converter={StaticResource BoolToString}, ConverterParameter='🏆|🎵'}"
+                   FontSize="80" HorizontalTextAlignment="Center" />
+
+            <Label Text="¡Canción completada!" Style="{StaticResource TitleLabel}"
+                   HorizontalTextAlignment="Center" />
+
+            <Label Text="{Binding SongName}" Style="{StaticResource SubtitleLabel}"
+                   HorizontalTextAlignment="Center" TextColor="{StaticResource Primary}" />
+
+            <!-- Stats -->
+            <Border Style="{StaticResource Card}">
+                <Grid RowDefinitions="Auto,Auto,Auto" RowSpacing="16">
+                    <Grid Grid.Row="0" ColumnDefinitions="*,*">
+                        <StackLayout Grid.Column="0" HorizontalOptions="Center" Spacing="4">
+                            <Label Text="{Binding TotalScoreText}" FontSize="36"
+                                   FontFamily="OpenSansSemibold" TextColor="{StaticResource Success}"
+                                   HorizontalTextAlignment="Center" />
+                            <Label Text="Puntuación" Style="{StaticResource MutedLabel}"
+                                   HorizontalTextAlignment="Center" />
+                        </StackLayout>
+                        <StackLayout Grid.Column="1" HorizontalOptions="Center" Spacing="4">
+                            <Label Text="{Binding TotalXpText}" FontSize="36"
+                                   FontFamily="OpenSansSemibold" TextColor="{StaticResource Gold}"
+                                   HorizontalTextAlignment="Center" />
+                            <Label Text="XP ganado" Style="{StaticResource MutedLabel}"
+                                   HorizontalTextAlignment="Center" />
+                        </StackLayout>
+                    </Grid>
+                    <BoxView Grid.Row="1" HeightRequest="1"
+                             BackgroundColor="{StaticResource SurfaceLight}" />
+                    <Label Grid.Row="2"
+                           Text="{Binding SegmentsCompleted, StringFormat='{0} segmentos completados'}"
+                           Style="{StaticResource MutedLabel}" HorizontalTextAlignment="Center" />
+                </Grid>
+            </Border>
+
+            <!-- Actions -->
+            <StackLayout Spacing="12">
+                <Button Text="Volver al inicio" Command="{Binding GoHomeCommand}" />
+                <Button Text="Jugar de nuevo" Command="{Binding PlayAgainCommand}"
+                        Style="{StaticResource SecondaryButton}" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
