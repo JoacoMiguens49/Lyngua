@@ -130,6 +130,10 @@ StyleCopReport.xml
 *.svclog
 *.scc
 
+# Claude AI files
+CLAUDE.md
+.claude/
+
 # Chutzpah Test files
 _Chutzpah*
 
