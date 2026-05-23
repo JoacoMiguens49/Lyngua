@@ -1,5 +1,0 @@
-<Solution>
-  <Project Path="DuoMusica/DuoMusica.csproj">
-    <Deploy Solution="Debug|*" />
-  </Project>
-</Solution>
