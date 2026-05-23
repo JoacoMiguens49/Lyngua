@@ -1,0 +1,24 @@
+<metadata>
+  <!--
+    Fixes CS0542: "member name cannot be the same as enclosing type"
+    These Java fields have the same name as their class — illegal in C#.
+    We rename only the C# managed name; the Java interop name stays unchanged.
+  -->
+  <attr path="/api/package[@name='com.spotify.protocol.types']/class[@name='PlaybackSpeed']/field[@name='playbackSpeed']"
+        name="managedName">PlaybackSpeedValue</attr>
+
+  <attr path="/api/package[@name='com.spotify.protocol.types']/class[@name='Message']/field[@name='message']"
+        name="managedName">MessageText</attr>
+
+  <attr path="/api/package[@name='com.spotify.protocol.types']/class[@name='Shuffle']/field[@name='shuffle']"
+        name="managedName">ShuffleEnabled</attr>
+
+  <attr path="/api/package[@name='com.spotify.protocol.types']/class[@name='Uris']/field[@name='uris']"
+        name="managedName">UriList</attr>
+
+  <attr path="/api/package[@name='com.spotify.protocol.types']/class[@name='Repeat']/field[@name='repeat']"
+        name="managedName">RepeatMode</attr>
+
+  <attr path="/api/package[@name='com.spotify.protocol.types']/class[@name='Uri']/field[@name='uri']"
+        name="managedName">UriString</attr>
+</metadata>
