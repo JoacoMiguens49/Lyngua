@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace DuoMusica;
+namespace Lyngua;
 
 [Register("AppDelegate")]
 public class AppDelegate : MauiUIApplicationDelegate

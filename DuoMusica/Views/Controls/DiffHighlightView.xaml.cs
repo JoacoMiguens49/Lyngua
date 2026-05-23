@@ -1,7 +1,7 @@
-using DuoMusica.Models;
+using Lyngua.Models;
 using System.Collections.ObjectModel;
 
-namespace DuoMusica.Views.Controls;
+namespace Lyngua.Views.Controls;
 
 public partial class DiffHighlightView : ContentView
 {

@@ -1,10 +1,10 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using DuoMusica.Models;
-using DuoMusica.Views;
+using Lyngua.Models;
+using Lyngua.Views;
 using System.Collections.ObjectModel;
 
-namespace DuoMusica.ViewModels;
+namespace Lyngua.ViewModels;
 
 [QueryProperty(nameof(Result), "Result")]
 [QueryProperty(nameof(Session), "Session")]

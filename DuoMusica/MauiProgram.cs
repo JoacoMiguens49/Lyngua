@@ -1,16 +1,16 @@
 using CommunityToolkit.Maui;
-using DuoMusica.Data;
-using DuoMusica.Data.Repositories;
-using DuoMusica.Services.Difficulty;
-using DuoMusica.Services.Game;
-using DuoMusica.Services.Lyrics;
-using DuoMusica.Services.Spotify;
-using DuoMusica.Services.User;
-using DuoMusica.ViewModels;
-using DuoMusica.Views;
+using Lyngua.Data;
+using Lyngua.Data.Repositories;
+using Lyngua.Services.Difficulty;
+using Lyngua.Services.Game;
+using Lyngua.Services.Lyrics;
+using Lyngua.Services.Spotify;
+using Lyngua.Services.User;
+using Lyngua.ViewModels;
+using Lyngua.Views;
 using Microsoft.Extensions.Logging;
 
-namespace DuoMusica;
+namespace Lyngua;
 
 public static class MauiProgram
 {
@@ -43,9 +43,9 @@ public static class MauiProgram
         builder.Services.AddTransient<IBotService, BotService>();
 
 #if ANDROID
-        builder.Services.AddSingleton<ISpotifyRemoteService, DuoMusica.Platforms.Android.Services.SpotifyRemoteService>();
+        builder.Services.AddSingleton<ISpotifyRemoteService, Lyngua.Platforms.Android.Services.SpotifyRemoteService>();
 #elif IOS
-        builder.Services.AddSingleton<ISpotifyRemoteService, DuoMusica.Platforms.iOS.Services.SpotifyRemoteService>();
+        builder.Services.AddSingleton<ISpotifyRemoteService, Lyngua.Platforms.iOS.Services.SpotifyRemoteService>();
 #else
         builder.Services.AddSingleton<ISpotifyRemoteService, SpotifyRemoteServiceStub>();
 #endif

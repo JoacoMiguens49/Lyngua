@@ -1,11 +1,11 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using DuoMusica.Models;
-using DuoMusica.Services.Spotify;
-using DuoMusica.Views;
+using Lyngua.Models;
+using Lyngua.Services.Spotify;
+using Lyngua.Views;
 using System.Collections.ObjectModel;
 
-namespace DuoMusica.ViewModels;
+namespace Lyngua.ViewModels;
 
 [QueryProperty(nameof(Mode), "Mode")]
 public partial class SongSearchViewModel : BaseViewModel

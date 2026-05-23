@@ -4,7 +4,7 @@ using System.Text;
 using System.Text.Json;
 using System.Web;
 
-namespace DuoMusica.Services.Spotify;
+namespace Lyngua.Services.Spotify;
 
 public class SpotifyAuthService : ISpotifyAuthService
 {

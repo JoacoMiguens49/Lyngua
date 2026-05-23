@@ -1,4 +1,4 @@
-namespace DuoMusica.Helpers;
+namespace Lyngua.Helpers;
 
 public static class XpCalculator
 {

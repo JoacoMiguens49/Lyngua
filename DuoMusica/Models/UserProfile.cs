@@ -1,6 +1,6 @@
 using SQLite;
 
-namespace DuoMusica.Models;
+namespace Lyngua.Models;
 
 [Table("UserProfile")]
 public class UserProfile

@@ -1,7 +1,7 @@
-using DuoMusica.Models;
+using Lyngua.Models;
 using System.Text.RegularExpressions;
 
-namespace DuoMusica.Helpers;
+namespace Lyngua.Helpers;
 
 public static class LrcParser
 {

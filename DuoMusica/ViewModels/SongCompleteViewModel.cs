@@ -1,10 +1,10 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using DuoMusica.Models;
-using DuoMusica.Services.Game;
-using DuoMusica.Views;
+using Lyngua.Models;
+using Lyngua.Services.Game;
+using Lyngua.Views;
 
-namespace DuoMusica.ViewModels;
+namespace Lyngua.ViewModels;
 
 [QueryProperty(nameof(Session), "Session")]
 public partial class SongCompleteViewModel : BaseViewModel

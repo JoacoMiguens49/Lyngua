@@ -1,12 +1,12 @@
-using DuoMusica.Data.Repositories;
-using DuoMusica.Helpers;
-using DuoMusica.Models;
-using DuoMusica.Services.Difficulty;
-using DuoMusica.Services.Lyrics;
-using DuoMusica.Services.Spotify;
-using DuoMusica.Services.User;
+using Lyngua.Data.Repositories;
+using Lyngua.Helpers;
+using Lyngua.Models;
+using Lyngua.Services.Difficulty;
+using Lyngua.Services.Lyrics;
+using Lyngua.Services.Spotify;
+using Lyngua.Services.User;
 
-namespace DuoMusica.Services.Game;
+namespace Lyngua.Services.Game;
 
 public class GameService : IGameService
 {

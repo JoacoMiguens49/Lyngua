@@ -1,6 +1,6 @@
-using DuoMusica.Models;
+using Lyngua.Models;
 
-namespace DuoMusica.Services.Difficulty;
+namespace Lyngua.Services.Difficulty;
 
 public interface IDifficultyService
 {

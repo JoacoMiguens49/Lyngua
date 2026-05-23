@@ -1,6 +1,6 @@
-using DuoMusica.Models;
+using Lyngua.Models;
 
-namespace DuoMusica.Services.Spotify;
+namespace Lyngua.Services.Spotify;
 
 public interface ISpotifyWebApiService
 {

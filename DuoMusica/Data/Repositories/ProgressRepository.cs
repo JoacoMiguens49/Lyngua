@@ -1,6 +1,6 @@
-using DuoMusica.Models;
+using Lyngua.Models;
 
-namespace DuoMusica.Data.Repositories;
+namespace Lyngua.Data.Repositories;
 
 public class ProgressRepository
 {

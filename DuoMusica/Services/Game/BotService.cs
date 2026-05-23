@@ -1,4 +1,4 @@
-namespace DuoMusica.Services.Game;
+namespace Lyngua.Services.Game;
 
 public class BotService : IBotService
 {

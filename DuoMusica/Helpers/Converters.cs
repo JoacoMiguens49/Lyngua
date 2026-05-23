@@ -1,6 +1,6 @@
 using System.Globalization;
 
-namespace DuoMusica.Helpers;
+namespace Lyngua.Helpers;
 
 /// <summary>
 /// Converts bool to its inverse.

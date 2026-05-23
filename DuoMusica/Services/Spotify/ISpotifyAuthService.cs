@@ -1,4 +1,4 @@
-namespace DuoMusica.Services.Spotify;
+namespace Lyngua.Services.Spotify;
 
 public interface ISpotifyAuthService
 {

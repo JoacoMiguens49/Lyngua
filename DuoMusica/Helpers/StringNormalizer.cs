@@ -2,7 +2,7 @@ using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace DuoMusica.Helpers;
+namespace Lyngua.Helpers;
 
 public static class StringNormalizer
 {

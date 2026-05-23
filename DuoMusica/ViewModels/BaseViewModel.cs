@@ -1,6 +1,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace DuoMusica.ViewModels;
+namespace Lyngua.ViewModels;
 
 public partial class BaseViewModel : ObservableObject
 {

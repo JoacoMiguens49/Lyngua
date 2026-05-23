@@ -1,11 +1,11 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using DuoMusica.Models;
-using DuoMusica.Services.User;
+using Lyngua.Models;
+using Lyngua.Services.User;
 using System.Collections.ObjectModel;
 using System.Text.Json;
 
-namespace DuoMusica.ViewModels;
+namespace Lyngua.ViewModels;
 
 public partial class OnboardingViewModel : BaseViewModel
 {

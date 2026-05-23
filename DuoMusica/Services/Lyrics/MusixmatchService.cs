@@ -1,9 +1,9 @@
-using DuoMusica.Helpers;
-using DuoMusica.Models;
+using Lyngua.Helpers;
+using Lyngua.Models;
 using System.Net.Http.Headers;
 using System.Text.Json;
 
-namespace DuoMusica.Services.Lyrics;
+namespace Lyngua.Services.Lyrics;
 
 public class MusixmatchService : ILyricsService
 {

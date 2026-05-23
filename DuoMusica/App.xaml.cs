@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace DuoMusica;
+namespace Lyngua;
 
 public partial class App : Application
 {

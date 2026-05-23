@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Shell
-    x:Class="DuoMusica.AppShell"
+    x:Class="Lyngua.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:views="clr-namespace:DuoMusica.Views"
+    xmlns:views="clr-namespace:Lyngua.Views"
     Shell.NavBarIsVisible="False"
     FlyoutBehavior="Disabled">
 

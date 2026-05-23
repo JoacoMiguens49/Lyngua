@@ -1,6 +1,6 @@
-using DuoMusica.Views;
+using Lyngua.Views;
 
-namespace DuoMusica;
+namespace Lyngua;
 
 public partial class AppShell : Shell
 {

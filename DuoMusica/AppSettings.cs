@@ -1,15 +1,17 @@
-namespace DuoMusica;
+namespace Lyngua;
 
-public static class AppSettings
+public static partial class AppSettings
 {
     public static string SpotifyClientId { get; set; } = string.Empty;
-    public static string SpotifyRedirectUri { get; set; } = "duomusica://callback";
+    public static string SpotifyRedirectUri { get; set; } = "lyngua://callback";
     public static string MusixmatchApiKey { get; set; } = string.Empty;
 
     public static void Load()
     {
-        // Set your API keys here or load from secure config
-        // SpotifyClientId = "YOUR_SPOTIFY_CLIENT_ID";
-        // MusixmatchApiKey = "YOUR_MUSIXMATCH_API_KEY";
+        // Keys are injected by Secrets.cs (gitignored).
+        // If that file doesn't exist the app runs with empty keys (safe default).
+        LoadSecrets();
     }
+
+    static partial void LoadSecrets();
 }

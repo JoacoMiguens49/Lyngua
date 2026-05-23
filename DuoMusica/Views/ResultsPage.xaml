@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="DuoMusica.Views.ResultsPage"
+    x:Class="Lyngua.Views.ResultsPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:vm="clr-namespace:DuoMusica.ViewModels"
-    xmlns:controls="clr-namespace:DuoMusica.Views.Controls">
+    xmlns:vm="clr-namespace:Lyngua.ViewModels"
+    xmlns:controls="clr-namespace:Lyngua.Views.Controls">
 
     <ScrollView BackgroundColor="{StaticResource Background}">
         <StackLayout Padding="24,60,24,32" Spacing="24">

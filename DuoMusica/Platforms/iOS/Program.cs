@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace DuoMusica;
+namespace Lyngua;
 
 public class Program
 {

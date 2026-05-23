@@ -2,8 +2,8 @@
 <Application
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:helpers="clr-namespace:DuoMusica.Helpers"
-    x:Class="DuoMusica.App">
+    xmlns:helpers="clr-namespace:Lyngua.Helpers"
+    x:Class="Lyngua.App">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

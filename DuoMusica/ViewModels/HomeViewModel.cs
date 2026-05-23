@@ -1,13 +1,13 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using DuoMusica.Data.Repositories;
-using DuoMusica.Helpers;
-using DuoMusica.Models;
-using DuoMusica.Services.User;
-using DuoMusica.Views;
+using Lyngua.Data.Repositories;
+using Lyngua.Helpers;
+using Lyngua.Models;
+using Lyngua.Services.User;
+using Lyngua.Views;
 using System.Collections.ObjectModel;
 
-namespace DuoMusica.ViewModels;
+namespace Lyngua.ViewModels;
 
 public partial class HomeViewModel : BaseViewModel
 {
@@ -27,7 +27,7 @@ public partial class HomeViewModel : BaseViewModel
     {
         _userService = userService;
         _progress = progress;
-        Title = "DuoMusica";
+        Title = "Lyngua";
     }
 
     public async Task LoadAsync()

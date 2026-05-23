@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="DuoMusica.Views.SongSearchPage"
+    x:Class="Lyngua.Views.SongSearchPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:vm="clr-namespace:DuoMusica.ViewModels"
-    xmlns:models="clr-namespace:DuoMusica.Models">
+    xmlns:vm="clr-namespace:Lyngua.ViewModels"
+    xmlns:models="clr-namespace:Lyngua.Models">
 
     <Grid BackgroundColor="{StaticResource Background}" RowDefinitions="Auto,Auto,Auto,*">
 

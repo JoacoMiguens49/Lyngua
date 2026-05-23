@@ -1,4 +1,4 @@
-namespace DuoMusica.Services.Spotify;
+namespace Lyngua.Services.Spotify;
 
 /// <summary>
 /// Stub for non-mobile platforms (Windows dev builds). Simulates Spotify Remote behavior.

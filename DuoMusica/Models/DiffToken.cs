@@ -1,4 +1,4 @@
-namespace DuoMusica.Models;
+namespace Lyngua.Models;
 
 public enum DiffStatus
 {

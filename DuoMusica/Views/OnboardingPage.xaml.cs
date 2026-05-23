@@ -1,6 +1,6 @@
-using DuoMusica.ViewModels;
+using Lyngua.ViewModels;
 
-namespace DuoMusica.Views;
+namespace Lyngua.Views;
 
 public partial class OnboardingPage : ContentPage
 {

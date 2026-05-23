@@ -1,13 +1,13 @@
-using DuoMusica.Services.Spotify;
+using Lyngua.Services.Spotify;
 
-namespace DuoMusica.Platforms.Android.Services;
+namespace Lyngua.Platforms.Android.Services;
 
 /// <summary>
 /// Android implementation using Spotify App Remote SDK.
 ///
 /// SETUP REQUIRED:
 /// 1. Download spotify-app-remote-release-X.X.X.aar from https://github.com/spotify/android-sdk
-/// 2. Create a new Android Binding Library project (DuoMusica.Android.SpotifyBinding)
+/// 2. Create a new Android Binding Library project (Lyngua.Android.SpotifyBinding)
 /// 3. Add the AAR as a native library in the binding project
 /// 4. Reference the binding project from DuoMusica
 /// 5. Register your redirect URI in the Spotify Developer Dashboard

@@ -1,6 +1,6 @@
-using DuoMusica.Models;
+using Lyngua.Models;
 
-namespace DuoMusica.Services.Lyrics;
+namespace Lyngua.Services.Lyrics;
 
 public interface ILyricsService
 {

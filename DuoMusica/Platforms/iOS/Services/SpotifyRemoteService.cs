@@ -1,6 +1,6 @@
-using DuoMusica.Services.Spotify;
+using Lyngua.Services.Spotify;
 
-namespace DuoMusica.Platforms.iOS.Services;
+namespace Lyngua.Platforms.iOS.Services;
 
 /// <summary>
 /// iOS implementation using Spotify iOS SDK (SpotifyiOS.xcframework).

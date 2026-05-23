@@ -1,8 +1,8 @@
-using DuoMusica.Models;
+using Lyngua.Models;
 using System.Net.Http.Headers;
 using System.Text.Json;
 
-namespace DuoMusica.Services.Spotify;
+namespace Lyngua.Services.Spotify;
 
 public class SpotifyWebApiService : ISpotifyWebApiService
 {

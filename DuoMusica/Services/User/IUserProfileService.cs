@@ -1,6 +1,6 @@
-using DuoMusica.Models;
+using Lyngua.Models;
 
-namespace DuoMusica.Services.User;
+namespace Lyngua.Services.User;
 
 public interface IUserProfileService
 {

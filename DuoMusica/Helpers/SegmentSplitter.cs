@@ -1,6 +1,6 @@
-using DuoMusica.Models;
+using Lyngua.Models;
 
-namespace DuoMusica.Helpers;
+namespace Lyngua.Helpers;
 
 public static class SegmentSplitter
 {

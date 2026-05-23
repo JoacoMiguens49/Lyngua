@@ -1,6 +1,6 @@
-using DuoMusica.Models;
+using Lyngua.Models;
 
-namespace DuoMusica.Services.Game;
+namespace Lyngua.Services.Game;
 
 public interface IGameService
 {

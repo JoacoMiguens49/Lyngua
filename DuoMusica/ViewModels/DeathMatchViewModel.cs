@@ -1,12 +1,12 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using DuoMusica.Models;
-using DuoMusica.Services.Game;
-using DuoMusica.Services.Spotify;
-using DuoMusica.Services.User;
-using DuoMusica.Views;
+using Lyngua.Models;
+using Lyngua.Services.Game;
+using Lyngua.Services.Spotify;
+using Lyngua.Services.User;
+using Lyngua.Views;
 
-namespace DuoMusica.ViewModels;
+namespace Lyngua.ViewModels;
 
 [QueryProperty(nameof(Song), "Song")]
 public partial class DeathMatchViewModel : BaseViewModel

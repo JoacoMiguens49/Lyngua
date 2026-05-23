@@ -1,8 +1,8 @@
-using DuoMusica.Data.Repositories;
-using DuoMusica.Helpers;
-using DuoMusica.Models;
+using Lyngua.Data.Repositories;
+using Lyngua.Helpers;
+using Lyngua.Models;
 
-namespace DuoMusica.Services.User;
+namespace Lyngua.Services.User;
 
 public class UserProfileService : IUserProfileService
 {
