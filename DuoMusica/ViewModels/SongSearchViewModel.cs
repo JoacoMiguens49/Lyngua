@@ -45,9 +45,12 @@ public partial class SongSearchViewModel : BaseViewModel
         try
         {
             IsAuthenticated = await _auth.AuthenticateAsync();
-            if (IsAuthenticated) await SearchAsync();
         }
         finally { IsBusy = false; }
+
+        // SearchAsync tiene su propio guard de IsBusy, así que hay que llamarla
+        // DESPUÉS de que finally resetee IsBusy, no dentro del try.
+        if (IsAuthenticated) await SearchAsync();
     }
 
     [RelayCommand]

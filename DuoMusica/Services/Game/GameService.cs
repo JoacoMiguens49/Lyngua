@@ -32,7 +32,7 @@ public class GameService : IGameService
 
     public async Task<GameSession> BuildSessionAsync(Song song, GameMode mode)
     {
-        var lines = await _lyrics.GetSyncedLyricsAsync(song.Name, song.Artist, song.Isrc);
+        var lines = await _lyrics.GetSyncedLyricsAsync(song.Name, song.Artist, song.Isrc, song.DurationMs);
         if (lines is null or { Count: 0 })
             throw new InvalidOperationException("No se encontraron letras sincronizadas para esta canción.");
 

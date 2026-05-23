@@ -4,5 +4,5 @@ namespace Lyngua.Services.Lyrics;
 
 public interface ILyricsService
 {
-    Task<List<LyricLine>?> GetSyncedLyricsAsync(string trackName, string artistName, string? isrc = null);
+    Task<List<LyricLine>?> GetSyncedLyricsAsync(string trackName, string artistName, string? isrc = null, int durationMs = 0);
 }

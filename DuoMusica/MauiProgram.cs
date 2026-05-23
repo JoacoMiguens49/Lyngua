@@ -36,7 +36,7 @@ public static class MauiProgram
         // Services
         builder.Services.AddSingleton<ISpotifyAuthService, SpotifyAuthService>();
         builder.Services.AddSingleton<ISpotifyWebApiService, SpotifyWebApiService>();
-        builder.Services.AddSingleton<ILyricsService, MusixmatchService>();
+        builder.Services.AddSingleton<ILyricsService, LrcLibService>();
         builder.Services.AddSingleton<IUserProfileService, UserProfileService>();
         builder.Services.AddSingleton<IDifficultyService, DifficultyService>();
         builder.Services.AddSingleton<IGameService, GameService>();

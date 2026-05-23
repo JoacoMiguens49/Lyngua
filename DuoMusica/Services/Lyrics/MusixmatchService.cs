@@ -10,7 +10,7 @@ public class MusixmatchService : ILyricsService
     private const string ApiBase = "https://api.musixmatch.com/ws/1.1";
     private readonly HttpClient _http = new();
 
-    public async Task<List<LyricLine>?> GetSyncedLyricsAsync(string trackName, string artistName, string? isrc = null)
+    public async Task<List<LyricLine>?> GetSyncedLyricsAsync(string trackName, string artistName, string? isrc = null, int durationMs = 0)
     {
         var trackId = await FindTrackIdAsync(trackName, artistName, isrc);
         if (trackId is null) return null;

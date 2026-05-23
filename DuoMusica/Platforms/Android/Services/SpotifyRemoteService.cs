@@ -1,57 +1,104 @@
+using Android.Content;
+using Com.Spotify.Android.Appremote.Api;
 using Lyngua.Services.Spotify;
 
 namespace Lyngua.Platforms.Android.Services;
 
 /// <summary>
-/// Android implementation using Spotify App Remote SDK.
-///
-/// SETUP REQUIRED:
-/// 1. Download spotify-app-remote-release-X.X.X.aar from https://github.com/spotify/android-sdk
-/// 2. Create a new Android Binding Library project (Lyngua.Android.SpotifyBinding)
-/// 3. Add the AAR as a native library in the binding project
-/// 4. Reference the binding project from DuoMusica
-/// 5. Register your redirect URI in the Spotify Developer Dashboard
-///
-/// Once bindings are in place, replace the stub body below with:
-///   - SpotifyAppRemote.Connect(context, connectionParams, connectionListener)
-///   - _remote.PlayerApi.Play(spotifyUri)
-///   - _remote.PlayerApi.SeekTo(startMs)
-///   - Stop playback via a Timer after durationMs
+/// Implementación real del Spotify App Remote SDK para Android.
+/// Controla la app de Spotify instalada en el dispositivo — no requiere Premium.
+/// El AAR se incluye en Platforms/Android/Libs/ y los bindings se generan con Bind="true".
 /// </summary>
-public class SpotifyRemoteService : ISpotifyRemoteService
+public class SpotifyRemoteService : Java.Lang.Object,
+    ISpotifyRemoteService,
+    IConnector.IConnectionListener
 {
-    // TODO: Replace with real Spotify App Remote instance once binding is added
-    // private SpotifyAppRemote? _remote;
+    private SpotifyAppRemote? _remote;
+    private TaskCompletionSource<bool>? _connectTcs;
+    private CancellationTokenSource? _segmentCts;
 
-    public Task<bool> ConnectAsync()
+    // ── ISpotifyRemoteService ────────────────────────────────────────────────
+
+    public async Task<bool> ConnectAsync()
     {
-        // TODO: SpotifyAppRemote.Connect(...)
-        return Task.FromResult(false);
+        if (_remote?.IsConnected == true) return true;
+
+        _connectTcs = new TaskCompletionSource<bool>();
+
+        var context = global::Android.App.Application.Context;
+        var @params = new ConnectionParams.Builder(AppSettings.SpotifyClientId)
+            .SetRedirectUri(AppSettings.SpotifyRedirectUri)
+            .ShowAuthView(true)
+            .Build();
+
+        SpotifyAppRemote.Connect(context, @params, this);
+
+        // Timeout de 10 segundos
+        using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(10));
+        timeout.Token.Register(() => _connectTcs.TrySetResult(false));
+
+        return await _connectTcs.Task;
     }
 
-    public Task PlaySegmentAsync(string spotifyUri, int startMs, int durationMs)
+    public async Task PlaySegmentAsync(string spotifyUri, int startMs, int durationMs)
     {
-        // TODO: _remote.PlayerApi.Play(spotifyUri)
-        //       _remote.PlayerApi.SeekTo(startMs)
-        //       Start a timer to pause after durationMs
-        return Task.CompletedTask;
+        if (_remote?.IsConnected != true)
+        {
+            if (!await ConnectAsync()) return;
+        }
+
+        var player = _remote!.PlayerApi;
+        if (player is null) return;
+
+        // Cancela cualquier segmento que estuviera corriendo
+        _segmentCts?.Cancel();
+        _segmentCts = new CancellationTokenSource();
+        var token = _segmentCts.Token;
+
+        // Play → Seek inmediato al punto de inicio → esperar duración → Pause
+        player.Play(spotifyUri);
+        player.SeekTo((long)startMs);
+
+        try
+        {
+            await Task.Delay(durationMs, token);
+            player.Pause();
+        }
+        catch (TaskCanceledException)
+        {
+            // Segmento interrumpido por el usuario, no es un error
+        }
     }
 
     public Task PauseAsync()
     {
-        // TODO: _remote.PlayerApi.Pause()
+        _segmentCts?.Cancel();
+        _remote?.PlayerApi?.Pause();
         return Task.CompletedTask;
     }
 
     public Task SeekToAsync(int positionMs)
     {
-        // TODO: _remote.PlayerApi.SeekTo(positionMs)
+        _remote?.PlayerApi?.SeekTo((long)positionMs);
         return Task.CompletedTask;
     }
 
-    public Task<bool> IsConnectedAsync()
+    public Task<bool> IsConnectedAsync() =>
+        Task.FromResult(_remote?.IsConnected == true);
+
+    // ── IConnector.IConnectionListener (callbacks del SDK) ──────────────────
+
+    public void OnConnected(SpotifyAppRemote? remote)
     {
-        // TODO: return _remote?.IsConnected ?? false
-        return Task.FromResult(false);
+        _remote = remote;
+        _connectTcs?.TrySetResult(true);
+    }
+
+    public void OnFailure(Java.Lang.Throwable? throwable)
+    {
+        System.Diagnostics.Debug.WriteLine(
+            $"[Spotify Remote] Falló la conexión: {throwable?.Message}");
+        _remote = null;
+        _connectTcs?.TrySetResult(false);
     }
 }
